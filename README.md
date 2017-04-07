@@ -3,6 +3,7 @@
 This folder contains an example application utilizing TensorFlow for Android
 devices.
 
+<<<<<<< HEAD
 ## Description
 
 The demos in this folder are designed to give straightforward samples of using
@@ -174,3 +175,12 @@ NDK).
 Full CMake support for the demo is coming soon, but for now it is possible to
 build the TensorFlow Android Inference library using
 [tensorflow/contrib/android/cmake](../../../tensorflow/contrib/android/cmake).
+=======
+Creating a new repo with two branches.
+1) App development
+-Updated by app team.
+
+2) Master branch = Machinelearning branch
+- Updated by machine learning team.
+
+>>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b

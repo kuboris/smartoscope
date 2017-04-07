@@ -173,6 +173,7 @@ fabric.properties
 ## Tensorflow demo application
 #org/tensorflow/demo/
 #sample_images/
+<<<<<<< HEAD
 #assets/thumbnails/
 #res/layout/camera_connection_fragment*.xml
 #res/layout/activity_camera.xml
@@ -180,3 +181,13 @@ fabric.properties
 
 # Gradle Build directory
 gradleBuild/
+=======
+assets/*.pb
+libs
+#res/layout/camera_connection_fragment*.xml
+#res/layout/activity_camera.xml
+#README.md
+#
+## Gradle Build directory
+gradleBuild/
+>>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b

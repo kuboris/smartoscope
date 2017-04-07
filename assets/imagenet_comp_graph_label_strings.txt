@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 dummy
 kit fox
 English setter
@@ -999,3 +1000,7 @@ rubber eraser
 stole
 carbonara
 dumbbell
+=======
+benign
+cancer
+>>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b

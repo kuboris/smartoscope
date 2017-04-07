@@ -16,8 +16,13 @@
 -->
 
 <resources>
+<<<<<<< HEAD
     <string name="app_name">TensorFlow Demo</string>
     <string name="activity_name_classification">TF Classify</string>
+=======
+    <string name="app_name">Smarthoscope</string>
+    <string name="activity_name_classification">Smarthoscope</string>
+>>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b
     <string name="activity_name_detection">TF Detect</string>
     <string name="activity_name_stylize">TF Stylize</string>
 </resources>
