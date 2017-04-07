@@ -39,3 +39,9 @@ python tensorflow/examples/image_retraining/retrain.py \
 - Test if works on nonbalanced dataset.
 
 -CPU flipped dataset on 75%
+-CPU finished with normal accuracy...
+
+- Problem with .pb file, compiling to android.
+
+- Downloaded biggest skin dataset from waya.ai
+- Adding environment and skin pictures.
