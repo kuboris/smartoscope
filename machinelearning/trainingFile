@@ -59,3 +59,14 @@ Transformation code that needs to be run to add to android.
 Needs to be solved using :
 http://stackoverflow.com/questions/36449222/tensor-flow-could-not-load-custom-protobuf-files-in
 
+Model has 76% accuracy on 4 classes.
+Recalculate with double amount of steps:
+
+python tensorflow/examples/image_retraining/retrain.py \
+--model_dir=/tf_files/inception \
+--bottleneck_dir=/tf_files/bottlenecks \
+--how_many_training_steps 8000 \
+--output_graph=/tf_files/retrained_graph_new.pb \
+--output_labels=/tf_files/retrained_labels_new.txt \
+--image_dir /tf_files/cancer_classes
+
