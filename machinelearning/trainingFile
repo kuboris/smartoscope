@@ -45,3 +45,17 @@ python tensorflow/examples/image_retraining/retrain.py \
 
 - Downloaded biggest skin dataset from waya.ai
 - Adding environment and skin pictures.
+
+Added skin and environment pictures. Using CPU instance training new model:
+
+python tensorflow/examples/image_retraining/retrain.py \
+--model_dir=/tf_files/inception \
+--bottleneck_dir=/tf_files/bottlenecks \
+--output_graph=/tf_files/retrained_graph_new.pb \
+--output_labels=/tf_files/retrained_labels_new.txt \
+--image_dir /tf_files/cancer_classes
+
+Transformation code that needs to be run to add to android.
+Needs to be solved using :
+http://stackoverflow.com/questions/36449222/tensor-flow-could-not-load-custom-protobuf-files-in
+
