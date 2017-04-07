@@ -173,7 +173,7 @@ fabric.properties
 ## Tensorflow demo application
 #org/tensorflow/demo/
 #sample_images/
-#assets/*.pb
+assets/*.pb
 libs
 #res/layout/camera_connection_fragment*.xml
 #res/layout/activity_camera.xml
