@@ -52,7 +52,8 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   private static final Logger LOGGER = new Logger();
 
   // Configuration values for the prepackaged multibox model.
-  private static final int MB_INPUT_SIZE = 224;
+//  private static final int MB_INPUT_SIZE = 224;
+  private static final int MB_INPUT_SIZE = 299;
   private static final int MB_IMAGE_MEAN = 128;
   private static final float MB_IMAGE_STD = 128;
   private static final String MB_INPUT_NAME = "ResizeBilinear";
