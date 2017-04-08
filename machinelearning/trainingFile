@@ -75,3 +75,5 @@ python tensorflow/examples/image_retraining/retrain.py --random_brightness 10 --
 
 Night training with data transform- 500 steps
 76 % over 4 classes.
+
+Using night file for presentation. Android team is adding UI.
