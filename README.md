@@ -1,6 +1,7 @@
-# smartoscope
+# TensorFlow Android Camera Demo
 
-Smart health analysis
+This folder contains an example application utilizing TensorFlow for Android
+devices.
 
 Creating a new repo with two branches.
 1) App development
@@ -8,4 +9,3 @@ Creating a new repo with two branches.
 
 2) Master branch = Machinelearning branch
 - Updated by machine learning team.
-

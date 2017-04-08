@@ -76,6 +76,7 @@ public class TensorFlowImageClassifier implements Classifier {
    * @param outputName The label of the output node.
    * @throws IOException
    */
+
   @SuppressLint("LongLogTag")
   public static Classifier create(
       AssetManager assetManager,
