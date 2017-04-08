@@ -73,3 +73,5 @@ python tensorflow/examples/image_retraining/retrain.py \
 Adding training during the night:
 python tensorflow/examples/image_retraining/retrain.py --random_brightness 10 --flip_left_right true --bottleneck_dir=/tf_files/bottlenecks --how_many_training_steps 1700 --model_dir=/tf_files/inception --output_graph=/tf_files/retrained_graph.pb --output_labels=/tf_files/retrained_labels.txt --image_dir /tf_files/out &
 
+Night training with data transform- 500 steps
+76 % over 4 classes.
