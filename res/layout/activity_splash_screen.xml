@@ -7,14 +7,13 @@
     android:id="@+id/relative_splash"
     android:clickable="true"
     tools:context="com.tensorflow.smartscope.SplashScreenActivity"
-    android:background="@android:color/transparent">
+    android:background="@android:color/white">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/description_info"
         android:layout_centerInParent="true"
-        android:scaleType="centerCrop"
         android:src="@drawable/new_logo_transparent"
         />
 

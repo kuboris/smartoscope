@@ -31,13 +31,17 @@ import android.os.Trace;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
-import java.util.List;
-import java.util.Vector;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import org.tensorflow.demo.OverlayView.DrawCallback;
 import org.tensorflow.demo.env.BorderedText;
 import org.tensorflow.demo.env.ImageUtils;
 import org.tensorflow.demo.env.Logger;
-import org.tensorflow.demo.R;
+
+import java.util.List;
+import java.util.Vector;
 
 public class ClassifierActivity extends CameraActivity implements OnImageAvailableListener {
   private static final Logger LOGGER = new Logger();
@@ -95,7 +99,9 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   private Matrix frameToCropTransform;
   private Matrix cropToFrameTransform;
 
-  private ResultsView resultsView;
+  private TextView mStateTV;
+  private ImageView mStateIV;
+
 
   private DetectionStateView detectionStateView;
 
@@ -122,7 +128,6 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, getResources().getDisplayMetrics());
     borderedText = new BorderedText(textSizePx);
     borderedText.setTypeface(Typeface.MONOSPACE);
-
     classifier =
         TensorFlowImageClassifier.create(
             getAssets(),
@@ -134,7 +139,10 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             INPUT_NAME,
             OUTPUT_NAME);
 
-    resultsView = (ResultsView) findViewById(R.id.results);
+//    resultsView = (ResultsView) findViewById(R.id.results);
+    mStateIV = (ImageView) findViewById(R.id.doctorImage);
+    mStateTV = (TextView) findViewById(R.id.label);
+
     detectionStateView = (DetectionStateView) findViewById(R.id.detectionState);
     previewWidth = size.getWidth();
     previewHeight = size.getHeight();
@@ -236,7 +244,6 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
 
             cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
-            resultsView.setResults(results);
             showResultBorder(results);
             requestRender();
             computing = false;
@@ -258,9 +265,27 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
       @Override
       public void run() {
         detectionStateView.invalidate();
+        displayResult(results);
       }
     });
   }
+
+  private void displayResult(final List<Classifier.Recognition> results){
+
+    int percents = (int)(results.get(0).getConfidence() * 100);
+
+    if(results.get(0).getTitle().equals("melanoma") && percents > 60) {
+      mStateTV.setText("Melanoma detected: " + Integer.toString(percents) + "%");
+      mStateIV.setVisibility(View.VISIBLE);
+    } else if(results.get(0).getTitle().equals("non melanoma") && percents > 50){
+      mStateTV.setText("Mole detected: " + Integer.toString(percents) + "%");
+      mStateIV.setVisibility(View.GONE);
+    } else {
+      mStateTV.setText("Finding mole");
+      mStateIV.setVisibility(View.GONE);
+    }
+  }
+
 
   @Override
   public void onSetDebug(boolean debug) {

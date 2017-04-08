@@ -50,6 +50,9 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -326,6 +329,16 @@ public class CameraConnectionFragment extends Fragment {
   public void onViewCreated(final View view, final Bundle savedInstanceState) {
     textureView = (AutoFitTextureView) view.findViewById(R.id.texture);
     mDetectionStateView = (DetectionStateView) view.findViewById(R.id.detectionState);
+    mDetectionStateView.startAnimation(supplyBlinkAnimation());
+  }
+
+  private Animation supplyBlinkAnimation() {
+    AlphaAnimation blinkanimation= new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+    blinkanimation.setDuration(700); // duration - half a second
+    blinkanimation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+    blinkanimation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+    blinkanimation.setRepeatMode(Animation.REVERSE);
+    return blinkanimation;
   }
 
   @Override

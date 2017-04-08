@@ -30,7 +30,7 @@ public class DetectionStateView extends FrameLayout {
     private Paint mBackgroundPaintState;
 
 
-    private int mTutorialColor = Color.parseColor("#FFFFFFFF");
+//    private int mTutorialColor = Color.parseColor("#FFFFFFFF");
 
     public DetectionStateView(Context context) {
         super(context);
@@ -87,8 +87,9 @@ public class DetectionStateView extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(mTutorialColor);
+//        canvas.drawColor(mTutorialColor);
         canvas.drawCircle(getWidth()/2, getHeight()/2, STATE_RADIUS, mBackgroundPaintState);
         canvas.drawCircle(getWidth()/2, getHeight()/2, RADIUS, mBackgroundPaint);
+
     }
 }
