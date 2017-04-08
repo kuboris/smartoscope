@@ -97,6 +97,8 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   private ResultsView resultsView;
 
+  private DetectionStateView detectionStateView;
+
   private BorderedText borderedText;
 
   private long lastProcessingTimeMs;
@@ -133,6 +135,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             OUTPUT_NAME);
 
     resultsView = (ResultsView) findViewById(R.id.results);
+    detectionStateView = (DetectionStateView) findViewById(R.id.detectionState);
     previewWidth = size.getWidth();
     previewHeight = size.getHeight();
 
@@ -234,12 +237,23 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
             cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
             resultsView.setResults(results);
+            showResultBorder(results);
             requestRender();
             computing = false;
           }
         });
 
     Trace.endSection();
+  }
+
+  private void showResultBorder(final List<Classifier.Recognition> results) {
+    if (results.get(0).getTitle().equals("melanoma") || results.get(0).getTitle().equals("non melanoma")) {
+      detectionStateView.setState(DetectionStateView.DetectionState.DETECTED);
+    } else if (results.get(0).getTitle().equals("skin")) {
+      detectionStateView.setState(DetectionStateView.DetectionState.SKIN);
+    } else if (results.get(0).getTitle().equals("other")) {
+      detectionStateView.setState(DetectionStateView.DetectionState.UNDEFINED);
+    }
   }
 
   @Override
