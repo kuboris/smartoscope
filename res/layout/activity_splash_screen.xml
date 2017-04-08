@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     android:id="@+id/relative_splash"
     android:clickable="true"
-    tools:context="com.tensorflow.smartscope.SplashScreenActivity">
+    tools:context="com.tensorflow.smartscope.SplashScreenActivity"
+    android:background="@android:color/transparent">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/description_info"
         android:layout_centerInParent="true"
-        android:scaleType="fitXY"
-        android:background="#000000"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_full"
+        />
+
+    <!--<ImageView-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:contentDescription="@string/description_info"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:background="#000000"-->
+        <!--android:visibility="invisible"/>-->
 
 </RelativeLayout>

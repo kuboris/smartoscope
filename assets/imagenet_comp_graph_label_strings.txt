@@ -1,2 +1,4 @@
-benign
-cancer
+non melanoma
+melanoma
+other
+skin
