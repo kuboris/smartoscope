@@ -44,11 +44,8 @@ def makeNdkRoot = System.getenv('NDK_ROOT')
 // If building with Bazel, this is the location of the bazel binary.
 // NOTE: Bazel does not yet support building for Android on Windows,
 // so in this case the Makefile build must be used as described above.
-<<<<<<< HEAD
+
 def bazelLocation = '/usr/bin/bazel'
-=======
-def bazelLocation = '/home/nicko/soft/bazel/output/bazel'
->>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b
 
 project.buildDir = 'gradleBuild'
 getProject().setBuildDir('gradleBuild')
@@ -63,11 +60,7 @@ buildscript {
     }
 
     dependencies {
-<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:2.3.0'
-=======
-        classpath 'com.android.tools.build:gradle:2.3.1'
->>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b
     }
 }
 
@@ -158,9 +151,5 @@ tasks.whenTaskAdded { task ->
 
 // Download default models; if you wish to use your own models then
 // place them in the "assets" directory and comment out this line.
-<<<<<<< HEAD
-apply from: "download-models.gradle"
-
-=======
 //apply from: "download-models.gradle"
->>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b
+

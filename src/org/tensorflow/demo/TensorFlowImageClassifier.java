@@ -15,10 +15,7 @@ limitations under the License.
 
 package org.tensorflow.demo;
 
-<<<<<<< HEAD
-=======
 import android.annotation.SuppressLint;
->>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Trace;
@@ -79,10 +76,8 @@ public class TensorFlowImageClassifier implements Classifier {
    * @param outputName The label of the output node.
    * @throws IOException
    */
-<<<<<<< HEAD
-=======
+
   @SuppressLint("LongLogTag")
->>>>>>> 2dd9e38d5f79972cc35c8a9a0cb2e21b8176db8b
   public static Classifier create(
       AssetManager assetManager,
       String modelFilename,
