@@ -30,7 +30,7 @@ public class DetectionStateView extends FrameLayout {
     private Paint mBackgroundPaintState;
 
 
-    private int mTutorialColor = Color.parseColor("#FF000000");
+    private int mTutorialColor = Color.parseColor("#FFFFFFFF");
 
     public DetectionStateView(Context context) {
         super(context);
@@ -78,7 +78,7 @@ public class DetectionStateView extends FrameLayout {
                 break;
         }
         mState = state;
-        invalidate();
+//        invalidate();
     }
 
     public DetectionState getState(){

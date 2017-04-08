@@ -15,7 +15,7 @@
         android:contentDescription="@string/description_info"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo_full"
+        android:src="@drawable/new_logo_transparent"
         />
 
     <!--<ImageView-->

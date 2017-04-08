@@ -1,0 +1,107 @@
+Error parsing gtk-icon-sizes string: ''
+Looking in classpath from com.intellij.util.lang.UrlClassLoader@6d5380c2 for /com/sun/jna/linux-x86-64/libjnidispatch.so
+Found library resource at jar:file:/media/media/nicko/soft/android/android-studio/lib/jna.jar!/com/sun/jna/linux-x86-64/libjnidispatch.so
+Trying /home/nicko/.AndroidStudio2.3/system/tmp/jna5551289674670742550.tmp
+Found jnidispatch at /home/nicko/.AndroidStudio2.3/system/tmp/jna5551289674670742550.tmp
+[  19553]   WARN - dea.updater.SdkComponentSource - File /home/nicko/.android/repositories.cfg could not be loaded. 
+[ 124791]   WARN - roid.tools.ndk.GradleWorkspace - NDK support for project 'android' is disabled because the project doesn't contain any valid native configurations. 
+[ 659771]   WARN - s.idea.run.util.MultiUserUtils - Error parsing output of `am get-current-user`: usage: am [subcommand] [options]
+usage:... 
+Looking for library 'libnotify.so.4'
+Adding paths from jna.library.path: null
+Trying libnotify.so.4
+Found library 'libnotify.so.4' at libnotify.so.4
+[6053224]   WARN - s.idea.run.util.MultiUserUtils - Error parsing output of `am get-current-user`: usage: am [subcommand] [options]
+usage:... 
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)
+
+(nm-applet:6470): libnm-WARNING **: (/tmp/portage/net-misc/networkmanager-1.4.0-r1/work/NetworkManager-1.4.0/libnm/nm-access-point.c:285):nm_access_point_connection_valid: runtime check failed: (ap_ssid != NULL)

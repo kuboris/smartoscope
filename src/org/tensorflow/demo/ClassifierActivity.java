@@ -254,6 +254,12 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
     } else if (results.get(0).getTitle().equals("other")) {
       detectionStateView.setState(DetectionStateView.DetectionState.UNDEFINED);
     }
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        detectionStateView.invalidate();
+      }
+    });
   }
 
   @Override

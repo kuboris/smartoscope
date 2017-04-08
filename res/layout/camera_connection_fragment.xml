@@ -24,9 +24,10 @@
         android:layout_alignParentBottom="true" />
 
     <org.tensorflow.demo.DetectionStateView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/texture"
+        android:layout_alignTop="@id/texture"
+        android:layout_alignBottom="@id/texture"
         android:id="@+id/detectionState"
         android:layout_alignParentBottom="true"/>
 

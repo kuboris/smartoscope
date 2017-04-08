@@ -76,6 +76,8 @@ public class CameraConnectionFragment extends Fragment {
   private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
   private static final String FRAGMENT_DIALOG = "dialog";
 
+  private DetectionStateView mDetectionStateView;
+
   static {
     ORIENTATIONS.append(Surface.ROTATION_0, 90);
     ORIENTATIONS.append(Surface.ROTATION_90, 0);
@@ -323,6 +325,7 @@ public class CameraConnectionFragment extends Fragment {
   @Override
   public void onViewCreated(final View view, final Bundle savedInstanceState) {
     textureView = (AutoFitTextureView) view.findViewById(R.id.texture);
+    mDetectionStateView = (DetectionStateView) view.findViewById(R.id.detectionState);
   }
 
   @Override
@@ -403,7 +406,8 @@ public class CameraConnectionFragment extends Fragment {
         } else {
           textureView.setAspectRatio(previewSize.getHeight(), previewSize.getWidth());
         }
-
+        mDetectionStateView.setState(mDetectionStateView.getState());
+        mDetectionStateView.invalidate();
         CameraConnectionFragment.this.cameraId = cameraId;
       }
     } catch (final CameraAccessException e) {
