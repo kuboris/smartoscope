@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/description_info"
         android:layout_centerInParent="true"
-        android:src="@drawable/new_logo_transparent"
+        android:src="@drawable/molescope"
         />
 
     <!--<ImageView-->

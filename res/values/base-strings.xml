@@ -16,8 +16,8 @@
 -->
 
 <resources>
-    <string name="app_name">Smarthoscope</string>
-    <string name="activity_name_classification">Smarthoscope</string>
+    <string name="app_name">Molescope</string>
+    <string name="activity_name_classification">Molescope</string>
     <string name="activity_name_detection">TF Detect</string>
     <string name="activity_name_stylize">TF Stylize</string>
 </resources>

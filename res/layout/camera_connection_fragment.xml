@@ -55,10 +55,11 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_margin="11dp"
+            android:padding="15dp"
             android:id="@+id/doctorImage"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            android:src="@drawable/doctor"/>
+            android:src="@drawable/ic_loupe"/>
 
         <TextView
             android:id="@+id/label"
@@ -71,9 +72,17 @@
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:gravity="center_vertical"
-            android:text="dummy"/>
+            android:text="Point camera at mole"/>
     </LinearLayout>
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#FF555555"
+        android:layout_below="@+id/resultNewPanel"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
 
     <org.tensorflow.demo.OverlayView
         android:id="@+id/debug_overlay"

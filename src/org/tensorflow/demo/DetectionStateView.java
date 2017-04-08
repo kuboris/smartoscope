@@ -17,14 +17,17 @@ import android.widget.FrameLayout;
 
 public class DetectionStateView extends FrameLayout {
 
-    enum DetectionState {
-        UNDEFINED, SKIN, DETECTED
-    }
+    // Add to DetectionStateView.java
+    public static final int UNDEFINED = 1;
+    public static final int SKIN = 2;
+    public static final int DETECTED_MOLE = 3;
+    public static final int DETECTED_MELANOMA = 4;
+
 
     private static final float RADIUS = 300;
     private static final float STATE_RADIUS = 320;
 
-    private DetectionState mState;
+    private int mState;
 
     private Paint mBackgroundPaint;
     private Paint mBackgroundPaintState;
@@ -57,7 +60,7 @@ public class DetectionStateView extends FrameLayout {
         setWillNotDraw(false);
         setLayerType(LAYER_TYPE_HARDWARE, null);
 
-        mState = DetectionState.UNDEFINED;
+        mState = UNDEFINED;
 
         mBackgroundPaintState = new Paint();
         mBackgroundPaintState.setColor(Color.RED);
@@ -65,31 +68,34 @@ public class DetectionStateView extends FrameLayout {
         mBackgroundPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
-    public void setState(DetectionState state){
+    public void setState(int state){
         switch(state){
             case UNDEFINED:
-                mBackgroundPaintState.setColor(Color.RED);
+                mBackgroundPaintState.setColor(Color.BLUE);
                 break;
             case SKIN:
                 mBackgroundPaintState.setColor(Color.YELLOW);
                 break;
-            case DETECTED:
+            case DETECTED_MOLE:
                 mBackgroundPaintState.setColor(Color.GREEN);
+                break;
+            case DETECTED_MELANOMA:
+                mBackgroundPaintState.setColor(Color.RED);
                 break;
         }
         mState = state;
 //        invalidate();
     }
 
-    public DetectionState getState(){
+    public int getState(){
         return mState;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 //        canvas.drawColor(mTutorialColor);
-        canvas.drawCircle(getWidth()/2, getHeight()/2, STATE_RADIUS, mBackgroundPaintState);
-        canvas.drawCircle(getWidth()/2, getHeight()/2, RADIUS, mBackgroundPaint);
+        canvas.drawCircle(getWidth()/2+30, getHeight()/2+30, STATE_RADIUS, mBackgroundPaintState);
+        canvas.drawCircle(getWidth()/2+30, getHeight()/2+30, RADIUS, mBackgroundPaint);
 
     }
 }

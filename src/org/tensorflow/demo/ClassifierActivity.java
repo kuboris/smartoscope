@@ -31,15 +31,16 @@ import android.os.Trace;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.tensorflow.demo.OverlayView.DrawCallback;
 import org.tensorflow.demo.env.BorderedText;
 import org.tensorflow.demo.env.ImageUtils;
 import org.tensorflow.demo.env.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -81,6 +82,10 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
 
+  private String mPreviousClass = "";
+  private int mToastLength =  Toast.LENGTH_SHORT;
+
+  private List<Integer> detectionFrameHistory; // Add to class definition of ClassifierActivity.java
   private Classifier classifier;
 
   private Integer sensorOrientation;
@@ -123,6 +128,14 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   @Override
   public void onPreviewSizeChosen(final Size size, final int rotation) {
+//    ActionBar actionBar = getActionBar();
+//    actionBar.setLogo(R.drawable.new_logo_small);
+//    actionBar.setDisplayUseLogoEnabled(true);
+//    actionBar.setDisplayShowHomeEnabled(true);
+//    actionBar.setTitle(R.string.app_name);
+//    actionBar.setDisplayHomeAsUpEnabled(true);
+
+
     final float textSizePx =
         TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, getResources().getDisplayMetrics());
@@ -142,6 +155,10 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 //    resultsView = (ResultsView) findViewById(R.id.results);
     mStateIV = (ImageView) findViewById(R.id.doctorImage);
     mStateTV = (TextView) findViewById(R.id.label);
+    detectionFrameHistory = new ArrayList<>(2);
+    detectionFrameHistory.add(0);
+    detectionFrameHistory.add(0);
+//    detectionFrameHistory.add(0);
 
     detectionStateView = (DetectionStateView) findViewById(R.id.detectionState);
     previewWidth = size.getWidth();
@@ -254,36 +271,73 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   }
 
   private void showResultBorder(final List<Classifier.Recognition> results) {
-    if (results.get(0).getTitle().equals("melanoma") || results.get(0).getTitle().equals("non melanoma")) {
-      detectionStateView.setState(DetectionStateView.DetectionState.DETECTED);
+    int receivedState = 0;
+
+    if (results.get(0).getTitle().equals("melanoma") && results.get(0).getConfidence() > 0.6){
+      receivedState = DetectionStateView.DETECTED_MELANOMA;
+    } else if(results.get(0).getTitle().equals("non melanoma") && results.get(0).getConfidence() > 0.5) {
+      receivedState = DetectionStateView.DETECTED_MOLE;
     } else if (results.get(0).getTitle().equals("skin")) {
-      detectionStateView.setState(DetectionStateView.DetectionState.SKIN);
+      receivedState = DetectionStateView.SKIN;
     } else if (results.get(0).getTitle().equals("other")) {
-      detectionStateView.setState(DetectionStateView.DetectionState.UNDEFINED);
+      receivedState = DetectionStateView.UNDEFINED;
     }
-    runOnUiThread(new Runnable() {
-      @Override
-      public void run() {
-        detectionStateView.invalidate();
-        displayResult(results);
-      }
-    });
+
+//    int index = 0;
+//    for (; index < detectionFrameHistory.size(); index++) {
+//      if (detectionFrameHistory.get(index).equals(0)) break;
+//    }
+//    if (index == 1) {
+//      for (; index >= 0; index--) {
+//        if (detectionFrameHistory.get(index) != receivedState) {
+//          detectionFrameHistory.remove(0);
+//          detectionFrameHistory.add(1, receivedState);
+//          break;
+//        }
+//      }
+//      if (index == -1) {
+        detectionStateView.setState(receivedState);
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            detectionStateView.invalidate();
+            displayResult(results);
+          }
+        });
+//      }
+//    } else {
+//      detectionFrameHistory.add(receivedState);
+//    }
   }
 
   private void displayResult(final List<Classifier.Recognition> results){
 
     int percents = (int)(results.get(0).getConfidence() * 100);
+    String currentClass = results.get(0).getTitle();
 
-    if(results.get(0).getTitle().equals("melanoma") && percents > 60) {
+//    if (!currentClass.equals(mPreviousClass) && !mPreviousClass.equals("")) {
+//      Log.w("SMARTSCOPE", "previous prediction (" + mPreviousClass + ") doesnt match with current (" + currentClass + ")");
+//      return;
+//    }
+
+    if(currentClass.equals("melanoma") && percents > 60) {
       mStateTV.setText("Melanoma detected: " + Integer.toString(percents) + "%");
-      mStateIV.setVisibility(View.VISIBLE);
-    } else if(results.get(0).getTitle().equals("non melanoma") && percents > 50){
+      Toast.makeText(this, "Consult your doctor, please", mToastLength).show();
+      mStateIV.setImageDrawable(getDrawable(R.drawable.doctor));
+    } else if(currentClass.equals("non melanoma") && percents > 50){
       mStateTV.setText("Mole detected: " + Integer.toString(percents) + "%");
-      mStateIV.setVisibility(View.GONE);
+      Toast.makeText(this, "It seems ok", mToastLength).show();
+      mStateIV.setImageDrawable(getDrawable(R.drawable.ic_ok));
+    } else if (currentClass.equals("skin")) {
+//      mStateTV.setText("Scanning mole " + Integer.toString(percents) + "%");
+      mStateTV.setText("Scanning mole");
+      mStateIV.setImageDrawable(getDrawable(R.drawable.ic_loupe));
     } else {
-      mStateTV.setText("Finding mole");
-      mStateIV.setVisibility(View.GONE);
+      mStateTV.setText("Point camera at mole");
+      mStateIV.setImageDrawable(getDrawable(R.drawable.ic_loupe));
     }
+
+    mPreviousClass = currentClass;
   }
 
 

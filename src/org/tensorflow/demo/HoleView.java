@@ -54,6 +54,6 @@ public class HoleView extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(mTutorialColor);
 //        canvas.drawCircle(getWidth()/2, getHeight()/2, STATE_RADIUS, mBackgroundPaintState);
-        canvas.drawCircle(getWidth()/2, getHeight()/2, RADIUS, mBackgroundPaint);
+        canvas.drawCircle(getWidth()/2+30, getHeight()/2+30, RADIUS, mBackgroundPaint);
     }
 }
