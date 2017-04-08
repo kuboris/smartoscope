@@ -175,6 +175,8 @@ fabric.properties
 #sample_images/
 assets/*.pb
 libs
+libs/armeabi-v7a/libtensorflow_demo.so
+libs/armeabi-v7a/libtensorflow_inference.so
 #res/layout/camera_connection_fragment*.xml
 #res/layout/activity_camera.xml
 #README.md
