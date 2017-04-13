@@ -1,11 +1,12 @@
-# smartoscope
+# Smartoscope
+Real time deep learning image analysis on Android.
 
-Smart health analysis
+# Repository started on V4 Hackathon 2017
+Branch - Master
+Contains machine learning model and python scripts
+Branch - Smarphone
+Contains android app files. ( Updated by app team)
 
-Creating a new repo with two branches.
-1) App development
--Updated by app team.
+(These branches will be consolidated soon.)
 
-2) Master branch = Machinelearning branch
-- Updated by machine learning team.
 
