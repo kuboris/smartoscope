@@ -141,7 +141,6 @@ Thumbs.db
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -174,7 +173,6 @@ fabric.properties
 #org/tensorflow/demo/
 #sample_images/
 assets/*.pb
-libs
 libs/armeabi-v7a/libtensorflow_demo.so
 libs/armeabi-v7a/libtensorflow_inference.so
 #res/layout/camera_connection_fragment*.xml
