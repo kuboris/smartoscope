@@ -16,7 +16,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.tensorflow.demo">
+    package="cz.binarytrio.molescope">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
@@ -25,7 +25,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="25" />
 
     <application android:allowBackup="true"
         android:debuggable="true"
@@ -33,38 +33,16 @@
         android:icon="@drawable/new_logo_small"
         android:theme="@style/MaterialTheme">
 
-        <activity android:name="org.tensorflow.demo.ClassifierActivity"
+        <activity android:name="cz.binarytrio.molescope.activity.ClassifierActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/activity_name_classification">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         </activity>
 
-        <activity android:name="org.tensorflow.demo.SplashScreenActivity"
+        <activity android:name="cz.binarytrio.molescope.activity.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:label="@string/activity_name_classification"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="org.tensorflow.demo.DetectorActivity"
-                  android:screenOrientation="portrait"
-                  android:label="@string/activity_name_detection">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="org.tensorflow.demo.StylizeActivity"
-                  android:screenOrientation="portrait"
-                  android:label="@string/activity_name_stylize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
