@@ -121,4 +121,5 @@ tasks.whenTaskAdded { task ->
 //apply from: "download-models.gradle"
 dependencies {
     compile project(':libandroid_tensorflow_inference_java')
+    compile project(':tensorflow_native')
 }

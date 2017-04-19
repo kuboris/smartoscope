@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/relative_splash"
     android:clickable="true"
-    tools:context="com.tensorflow.smartscope.SplashScreenActivity"
+    tools:context="cz.binarytrio.molescope.activity.SplashScreenActivity"
     android:background="@android:color/white">
 
     <ImageView

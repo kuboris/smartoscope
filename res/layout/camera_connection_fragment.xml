@@ -17,20 +17,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.tensorflow.demo.AutoFitTextureView
+    <cz.binarytrio.molescope.view.AutoFitTextureView
         android:id="@+id/texture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
-    <org.tensorflow.demo.HoleView
+    <cz.binarytrio.molescope.view.HoleView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/texture"
         android:layout_alignBottom="@id/texture"
         android:layout_alignParentBottom="true"/>
 
-    <org.tensorflow.demo.DetectionStateView
+    <cz.binarytrio.molescope.view.DetectionStateView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/texture"
@@ -84,7 +84,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"/>
 
-    <org.tensorflow.demo.OverlayView
+    <cz.binarytrio.molescope.view.OverlayView
         android:id="@+id/debug_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,1 +1,1 @@
-include ':libandroid_tensorflow_inference_java'
+include ':libandroid_tensorflow_inference_java', ':tensorflow_native'
