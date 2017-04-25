@@ -1,4 +1,0 @@
-non melanoma
-melanoma
-other
-skin

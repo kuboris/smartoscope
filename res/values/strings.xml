@@ -17,4 +17,14 @@
     <string name="description_info">Info</string>
     <string name="request_permission">This sample needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_model_msg">App does not contain model file which is necessary for normal operation. Do you want to download latest version (~90MB)?</string>
+    <string name="no_model_title">No model</string>
+    <string name="ok">OK</string>
+
+    <string name="melanoma">melanoma</string>
+    <string name="non_melanoma">non melanoma</string>
+    <string name="other">other</string>
+    <string name="skin">skin</string>
 </resources>

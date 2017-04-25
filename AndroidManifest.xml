@@ -33,6 +33,11 @@
         android:icon="@drawable/new_logo_small"
         android:theme="@style/MaterialTheme">
 
+        <service
+            android:name=".util.ModelKeeperService"
+            android:exported="false"/>
+
+
         <activity android:name="cz.binarytrio.molescope.activity.ClassifierActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/activity_name_classification">

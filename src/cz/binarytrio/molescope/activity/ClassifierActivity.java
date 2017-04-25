@@ -26,8 +26,10 @@ import android.media.Image;
 import android.media.Image.Plane;
 import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.os.Trace;
+import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
@@ -36,6 +38,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cz.binarytrio.molescope.Classifier;
+import cz.binarytrio.molescope.application.MoleApp;
+import cz.binarytrio.molescope.util.Helper;
 import cz.binarytrio.molescope.view.DetectionStateView;
 import cz.binarytrio.molescope.view.OverlayView.DrawCallback;
 import cz.binarytrio.molescope.R;
@@ -45,7 +49,9 @@ import org.tensorflow.demo.env.BorderedText;
 import org.tensorflow.demo.env.ImageUtils;
 import org.tensorflow.demo.env.Logger;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -54,8 +60,8 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   // These are the settings for the original v1 Inception model. If you want to
   // use a model that's been produced from the TensorFlow for Poets codelab,
-  // you'll need to set IMAGE_SIZE = 299, IMAGE_MEAN = 128, IMAGE_STD = 128,
-  // INPUT_NAME = "Mul", and OUTPUT_NAME = "final_result".
+  // you'll need to set IMAGE_SIZE = 299, MODEL_IMAGE_MEAN = 128, MODEL_IMAGE_STD = 128,
+  // MODEL_INPUT_NAME = "Mul", and MODEL_OUTPUT_NAME = "final_result".
   // You'll also need to update the MODEL_FILE and LABEL_FILE paths to point to
   // the ones you produced.
   //
@@ -69,15 +75,16 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   // --output_node_names="final_result" \
   // --input_binary=true
 //  private static final int INPUT_SIZE = 224;
-//  private static final int IMAGE_MEAN = 117;
-//  private static final float IMAGE_STD = 1;
+//  private static final int MODEL_IMAGE_MEAN = 117;
+//  private static final float MODEL_IMAGE_STD = 1;
     private static final int INPUT_SIZE = 299;
   private static final int IMAGE_MEAN = 128;
   private static final float IMAGE_STD = 128;
   private static final String INPUT_NAME = "Mul";
   private static final String OUTPUT_NAME = "final_result";
 
-  private static final String MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb";
+//  private static final String MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb";
+  private static final String MODEL_FILE = "file:///storage/9C33-6BBD/tensorflow_inception_graph.pb";
   private static final String LABEL_FILE =
       "file:///android_asset/imagenet_comp_graph_label_strings.txt";
 
@@ -146,16 +153,17 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, getResources().getDisplayMetrics());
     borderedText = new BorderedText(textSizePx);
     borderedText.setTypeface(Typeface.MONOSPACE);
-    classifier =
-        TensorFlowImageClassifier.create(
+//    boolean fexists = new File(Environment.getExternalStorageDirectory(), "tensorflow_inception_graph.pb").exists();
+
+    classifier = TensorFlowImageClassifier.create(
             getAssets(),
-            MODEL_FILE,
-            LABEL_FILE,
-            INPUT_SIZE,
-            IMAGE_MEAN,
-            IMAGE_STD,
-            INPUT_NAME,
-            OUTPUT_NAME);
+            Helper.getLocalModelStorage(this, MoleApp.MODEL_NAME, false),
+            Arrays.asList(getString(R.string.non_melanoma), getString(R.string.melanoma), getString(R.string.other), getString(R.string.skin)),
+            MoleApp.MODEL_INPUT_SIZE,
+            MoleApp.MODEL_IMAGE_MEAN,
+            MoleApp.MODEL_IMAGE_STD,
+            MoleApp.MODEL_INPUT_NAME,
+            MoleApp.MODEL_OUTPUT_NAME);
 
 //    resultsView = (ResultsView) findViewById(R.id.results);
     mStateIV = (ImageView) findViewById(R.id.doctorImage);
@@ -179,12 +187,12 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
     LOGGER.i("Initializing at size %dx%d", previewWidth, previewHeight);
     rgbBytes = new int[previewWidth * previewHeight];
     rgbFrameBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Config.ARGB_8888);
-    croppedBitmap = Bitmap.createBitmap(INPUT_SIZE, INPUT_SIZE, Config.ARGB_8888);
+    croppedBitmap = Bitmap.createBitmap(MoleApp.MODEL_INPUT_SIZE, MoleApp.MODEL_INPUT_SIZE, Config.ARGB_8888);
 
     frameToCropTransform =
         ImageUtils.getTransformationMatrix(
             previewWidth, previewHeight,
-            INPUT_SIZE, INPUT_SIZE,
+            MoleApp.MODEL_INPUT_SIZE, MoleApp.MODEL_INPUT_SIZE,
             sensorOrientation, MAINTAIN_ASPECT);
 
     cropToFrameTransform = new Matrix();

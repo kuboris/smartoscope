@@ -16,6 +16,7 @@ limitations under the License.
 package cz.binarytrio.molescope;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Trace;
@@ -30,6 +31,8 @@ import java.util.PriorityQueue;
 import java.util.Vector;
 import org.tensorflow.Operation;
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
+
+import cz.binarytrio.molescope.util.Helper;
 
 /** A classifier specialized to label images using TensorFlow. */
 public class TensorFlowImageClassifier implements Classifier {
@@ -63,25 +66,11 @@ public class TensorFlowImageClassifier implements Classifier {
 
   private TensorFlowImageClassifier() {}
 
-  /**
-   * Initializes a native TensorFlow session for classifying images.
-   *
-   * @param assetManager The asset manager to be used to load assets.
-   * @param modelFilename The filepath of the model GraphDef protocol buffer.
-   * @param labelFilename The filepath of label file for classes.
-   * @param inputSize The input size. A square image of inputSize x inputSize is assumed.
-   * @param imageMean The assumed mean of the image values.
-   * @param imageStd The assumed std of the image values.
-   * @param inputName The label of the image input node.
-   * @param outputName The label of the output node.
-   * @throws IOException
-   */
-
   @SuppressLint("LongLogTag")
   public static Classifier create(
       AssetManager assetManager,
       String modelFilename,
-      String labelFilename,
+      List<String> labels,
       int inputSize,
       int imageMean,
       float imageStd,
@@ -91,28 +80,13 @@ public class TensorFlowImageClassifier implements Classifier {
     c.inputName = inputName;
     c.outputName = outputName;
 
-    // Read the label names into memory.
-    // TODO(andrewharp): make this handle non-assets.
-    String actualFilename = labelFilename.split("file:///android_asset/")[1];
-    Log.i(TAG, "Reading labels from: " + actualFilename);
-    BufferedReader br = null;
-    try {
-      br = new BufferedReader(new InputStreamReader(assetManager.open(actualFilename)));
-      String line;
-      while ((line = br.readLine()) != null) {
-        c.labels.add(line);
-      }
-      br.close();
-    } catch (IOException e) {
-      throw new RuntimeException("Problem reading label file!" , e);
-    }
+    c.labels.addAll(labels);
 
     c.inferenceInterface = new TensorFlowInferenceInterface(assetManager, modelFilename);
 
-    // The shape of the output is [N, NUM_CLASSES], where N is the batch size.
     final Operation operation = c.inferenceInterface.graphOperation(outputName);
     final int numClasses = (int) operation.output(0).shape().size(1);
-    Log.i(TAG, "Read " + c.labels.size() + " labels, output layer size is " + numClasses);
+    Helper.log("Read " + c.labels.size() + " labels, output layer size is " + numClasses);
 
     // Ideally, inputSize could have been retrieved from the shape of the input operation.  Alas,
     // the placeholder node for input in the graphdef typically used does not specify a shape, so it

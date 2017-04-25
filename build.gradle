@@ -133,7 +133,13 @@ task buildNativeMake(type: Exec) {
 // Download default models; if you wish to use your own models then
 // place them in the "assets" directory and comment out this line.
 //apply from: "download-models.gradle"
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile project(':libandroid_tensorflow_inference_java')
     compile project(':tensorflow_native')
+    compile 'com.microsoft.azure.android:azure-storage-android:1.0.0'
 }
