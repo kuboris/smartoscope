@@ -7,23 +7,79 @@
     android:id="@+id/relative_splash"
     android:clickable="true"
     tools:context="cz.binarytrio.molescope.activity.SplashScreenActivity"
-    android:background="@android:color/white">
+    android:background="@color/orange_salmon"
+    >
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/description_info"
-        android:layout_centerInParent="true"
         android:src="@drawable/molescope"
+        android:adjustViewBounds="true"
+        android:visibility="visible"
+        android:layout_marginTop="65dp"
+        android:layout_alignParentTop="true"
         />
 
-    <!--<ImageView-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:contentDescription="@string/description_info"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:background="#000000"-->
-        <!--android:visibility="invisible"/>-->
+    <LinearLayout
+        android:id="@+id/ll_progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        >
+
+        <is.arontibo.library.ElasticDownloadView
+            android:id="@+id/pb_model_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            />
+
+        <TextView
+            android:id="@+id/tv_download_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="73dp"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/b_start_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start activity"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/b_reset_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reset model"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/tv_download_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/looking_for_model"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        />
 
 </RelativeLayout>

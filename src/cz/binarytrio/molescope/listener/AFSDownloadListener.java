@@ -6,7 +6,7 @@ package cz.binarytrio.molescope.listener;
 
 public interface AFSDownloadListener {
     public void onAttributesObtained(long versionNumber, long downloadSizeB);
-    public void onDownloadProgress(float progressPercentage, float speedBpS);
+    public void onDownloadProgress(float progressPercentage, long speedBpS);
     public void onDownloadFinished(long durationMillis);
     public void onDownloadError(String exception);
 }

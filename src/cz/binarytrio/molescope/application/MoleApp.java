@@ -1,12 +1,10 @@
 package cz.binarytrio.molescope.application;
 
-import android.app.Application;
-
 /**
  * Created by nicko on 4/20/17
  */
 
-public class MoleApp extends Application {
+public class MoleApp {
 
     public static final String STORAGE_CONNECTION_STRING = "FileEndpoint=https://triodisks597.file.core.windows.net;SharedAccessSignature=sv=2016-05-31&ss=f&srt=sco&sp=r&se=2017-07-20T07:49:14Z&st=2017-04-19T23:49:14Z&spr=https&sig=0S3RaPQq0s716TjlyAUE4RaSaXHpYO5zTXkTjCJjQkQ%3D";
     public static final String SHARE_NAME = "trio-apk-storage";

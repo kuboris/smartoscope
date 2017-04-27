@@ -38,7 +38,7 @@ public class ModelKeeperStateReceiver extends BroadcastReceiver {
             case ModelKeeperService.EVENT_MODEL_FETCH_PROGRESS:
                 mListener.onDownloadProgress(
                         intent.getFloatExtra(ModelKeeperService.ATTR_KEY_1, Helper.UNDEFINED),
-                        intent.getFloatExtra(ModelKeeperService.ATTR_KEY_2, Helper.UNDEFINED));
+                        intent.getLongExtra(ModelKeeperService.ATTR_KEY_2, Helper.UNDEFINED));
                 return;
             default:
                 Helper.log("unexpected action " + action + " in ModelKeeperService");

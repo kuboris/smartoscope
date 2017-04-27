@@ -56,7 +56,7 @@ public class ModelKeeperService extends IntentService implements AFSDownloadList
     }
 
     @Override
-    public void onDownloadProgress(float progressPercentage, float speedBpS) {
+    public void onDownloadProgress(float progressPercentage, long speedBpS) {
         sendBroadcast(new Intent(EVENT_MODEL_FETCH_PROGRESS)
                 .putExtra(ATTR_KEY_1, progressPercentage)
                 .putExtra(ATTR_KEY_2, speedBpS));

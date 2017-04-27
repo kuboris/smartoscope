@@ -41,23 +41,21 @@ public class Helper {
 
     public static final String TAG = Helper.class.getCanonicalName();
     public static final int UNDEFINED = -1;
-    public static final String UNKNOWN_EXCEPTION = "Unknown exception";
 
     public static final int KB = 1024;
     public static final int MB = 1024 * KB;
 
     private static final boolean DEBUG = true;
-    private static final DateFormat VERSION_FORMAT = SimpleDateFormat.getDateInstance();
+    private static final DateFormat VERSION_FORMAT = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
     private static final DecimalFormat SIZE_FORMAT = new DecimalFormat("#0.0");
 
-    public static void fetchModelInteractively(String storageConnectionString, String shareName, String remoteModelName, int bufferSize, String modelStorage, String versionFileExtension, AFSDownloadListener listener) {
+    public static void fetchModelInteractively(String storageConnectionString, String shareName, String remoteModelName, long bufferSize, String modelStorage, String versionFileExtension, AFSDownloadListener listener) {
         try {
             long downloadTime = System.currentTimeMillis();
             CloudFile modelFile = getAFSFile(storageConnectionString, shareName, remoteModelName);
             long modelVersion = getRemoteModelVersion(modelFile);
             long modelSize = getRemoteModelSize(modelFile);
             listener.onAttributesObtained(modelVersion, modelSize);
-            byte[] buffer = new byte[bufferSize];
             int blocks = (int) Math.ceil((double)modelSize/bufferSize);
             log("Downloading " + describeSize(modelSize) + " file in "+blocks+" blocks of "+describeSize(bufferSize)+" each...");
             FileOutputStream localModelStream = new FileOutputStream(modelStorage);
@@ -65,7 +63,6 @@ public class Helper {
             long blockTime;
             for (int i=0; i<blocks; i++) {
                 blockTime = System.currentTimeMillis();
-//                modelFile.downloadRangeToByteArray(bufferSize*i, (long) bufferSize, buffer, 0);
                 modelFile.downloadRange(bufferSize*i, (long) bufferSize, localModelStream);
                 blockTime = System.currentTimeMillis()-blockTime;
                 log("\t["+(i+1)+"/"+blocks+"] done in " + blockTime + " ms");
@@ -77,7 +74,7 @@ public class Helper {
             new DataOutputStream(new FileOutputStream(modelStorage+versionFileExtension)).writeLong(modelVersion);
 
             downloadTime = System.currentTimeMillis()-downloadTime;
-            System.out.println("Download done in " + downloadTime/1000 + "s (" + describeSize(modelSize/downloadTime) + " KB/s)");
+            System.out.println("Download done in " + downloadTime/1000 + "s (" + describeSize(modelSize*1000/downloadTime) + "/s)");
             listener.onDownloadFinished(downloadTime);
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,6 +92,7 @@ public class Helper {
     }
 
     public static String getLocalModelStorage(Context context, String modelPrefix, boolean writeRequired) {
+        //TODO handle more special cases
         File internalStorage = new File(context.getFilesDir(), modelPrefix);
         boolean accessToExternal = writeRequired?isExternalStorageWritable():isExternalStorageReadable();
         File storage;
@@ -109,15 +107,9 @@ public class Helper {
     public static void showYNDialog(Context context, String title, String message, final YNListener listener) {
         final DialogInterface.OnClickListener _listener = new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        listener.yes();
-                        break;
-
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        listener.no();
-                        break;
+            public void onClick(DialogInterface dialog, int which) { switch (which){
+                    case DialogInterface.BUTTON_POSITIVE: listener.yes(); break;
+                    case DialogInterface.BUTTON_NEGATIVE: listener.no(); break;
             }}};
 
         new AlertDialog.Builder(context)
@@ -186,13 +178,16 @@ public class Helper {
     }
 
     public static String describeSize(long downloadSizeB) {
-        if (downloadSizeB>=MB) return SIZE_FORMAT.format(downloadSizeB/MB) + " MB";
-        else if (downloadSizeB>=KB) return SIZE_FORMAT.format(downloadSizeB/KB) + " KB";
+        if (downloadSizeB>=MB) return SIZE_FORMAT.format((double) downloadSizeB/MB) + " MB";
+        else if (downloadSizeB>=KB) return SIZE_FORMAT.format((double) downloadSizeB/KB) + " KB";
         else return downloadSizeB + " B";
+    }
+
+    public static String describeSpeed(long speedBpS) {
+        return describeSize(speedBpS) + "/S";
     }
 
     public static String describeVersion(long versionNumber) {
         return VERSION_FORMAT.format(new Date(versionNumber));
     }
 }
-

@@ -27,4 +27,7 @@
     <string name="non_melanoma">non melanoma</string>
     <string name="other">other</string>
     <string name="skin">skin</string>
+    <string name="looking_for_model">Looking for model…</string>
+    <string name="downloading_model_attributes">Downloading model attributes…</string>
+    <string name="model_found">found model</string>
 </resources>
