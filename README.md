@@ -10,6 +10,9 @@ Step zero: Problem definition
 --------------------------------
 
 Melanoma is the most common human malignant cancer. With millions of new cases each year it accounts for 75 % of skin cancer deaths - more than 50 thousand deaths per year. Catching it early greatly increases chances of survival and enables removing it. It's primarily diagnosed visually following with biopsy in uncertain cases. Mole can be Benign(Just a mole) or Malignant(Cancerous cells).
+
+![enter image description here](http://www.drspitler.com/images/slide4.jpg)
+
 [Recent deep learning advances](https://www.youtube.com/watch?v=toK1OSLep3s) showed that they can predict malignant mole from the picture with 95% accuracy. 
 Sadly none of those models are publicly available.
 
@@ -51,12 +54,12 @@ Version 0.1 : APP: Smaller app, model downloaded from remote server **(DONE)**
 
 We need you help !
 ------------------
-We believe this project could help people. Do you believe the same ?
-What do we need help with at the moment ?
-1) Android Designer:  Are you experienced android designer ? Our app needs to get some slick visuals ! Contact us !
-2) Azure/Amazon/? Virtual machine provider. Training takes a lot of CPU/GPU power. Are you able to provide us with credits to train it ? Contact us !
-3) Doctors. Are you interested in this app ? Do you have experience with skin melanoma ? Would you like to test our app ?
-4) Anyone with an idea - Do you wan't to help us with anything else ? Do you have suggestions ? Contact us !
+We believe this project could help people. Do you believe the same?
+What do we need help with at the moment?
+1) Android Designer:  Are you experienced android designer? Our app needs to get some slick visuals! Contact us!
+2) Azure/Amazon/? Virtual machine provider. Training takes a lot of CPU/GPU power. Are you able to provide us with credits to train it? Contact us!
+3) Doctors. Are you interested in this app? Do you have experience with skin melanoma? Would you like to test our app?
+4) Anyone with an idea - Do you wan't to help us with anything else ? Do you have suggestions? Contact us!
 
 Contact email : kuboklauco(magic at sign)gmail(dot)com
 
