@@ -29,5 +29,7 @@
     <string name="skin">skin</string>
     <string name="looking_for_model">Looking for model…</string>
     <string name="downloading_model_attributes">Downloading model attributes…</string>
-    <string name="model_found">found model</string>
+    <string name="found">found</string>
+    <string name="left">left</string>
+    <string name="download_error_occured">The error occured</string>
 </resources>

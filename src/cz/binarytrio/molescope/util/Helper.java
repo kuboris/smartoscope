@@ -30,6 +30,7 @@ import java.security.InvalidKeyException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import cz.binarytrio.molescope.R;
@@ -45,9 +46,14 @@ public class Helper {
     public static final int KB = 1024;
     public static final int MB = 1024 * KB;
 
+    private static final int MINUTE = 60;
+    private static final int HOUR = 60 * MINUTE;
+    private static final int DAY = 24 * HOUR;
+
     private static final boolean DEBUG = true;
     private static final DateFormat VERSION_FORMAT = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
     private static final DecimalFormat SIZE_FORMAT = new DecimalFormat("#0.0");
+    private static final DecimalFormat VERSION_FORMAT_DECIMAL = new DecimalFormat("00");
 
     public static void fetchModelInteractively(String storageConnectionString, String shareName, String remoteModelName, long bufferSize, String modelStorage, String versionFileExtension, AFSDownloadListener listener) {
         try {
@@ -188,6 +194,20 @@ public class Helper {
     }
 
     public static String describeVersion(long versionNumber) {
-        return VERSION_FORMAT.format(new Date(versionNumber));
+        Calendar cv = Calendar.getInstance();
+        cv.setTimeInMillis(versionNumber);
+        return VERSION_FORMAT_DECIMAL.format(cv.get(Calendar.YEAR)%100)
+             + VERSION_FORMAT_DECIMAL.format(cv.get(Calendar.MONTH))
+             + VERSION_FORMAT_DECIMAL.format(cv.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public static String describeTime(long seconds) {return describeTime(seconds,2);}
+    private static String describeTime(long seconds, int level) {
+        if (level>0) {
+            if (seconds>DAY) return seconds/DAY + "d " + describeTime(seconds%DAY, level-1);
+            else if (seconds>HOUR) return seconds/HOUR + "h " + describeTime(seconds%HOUR, level-1);
+            else if (seconds>MINUTE) return seconds/MINUTE + "m " + describeTime(seconds%MINUTE, level-1);
+            else return seconds + "s";
+        } else return "";
     }
 }

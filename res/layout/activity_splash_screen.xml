@@ -7,79 +7,69 @@
     android:id="@+id/relative_splash"
     android:clickable="true"
     tools:context="cz.binarytrio.molescope.activity.SplashScreenActivity"
-    android:background="@color/orange_salmon"
+    android:background="@android:color/white"
     >
 
     <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/description_info"
         android:src="@drawable/molescope"
         android:adjustViewBounds="true"
         android:visibility="visible"
-        android:layout_marginTop="65dp"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/npb_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_logo"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="gone"
+        app:progress_text_size="15sp"
         />
 
     <LinearLayout
         android:id="@+id/ll_progress_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end"
+        android:orientation="horizontal"
         android:visibility="visible"
         android:layout_alignParentBottom="true"
         >
 
-        <is.arontibo.library.ElasticDownloadView
-            android:id="@+id/pb_model_progress"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_download_speed"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:minWidth="73dp"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             />
 
         <TextView
-            android:id="@+id/tv_download_speed"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_download_status"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minWidth="73dp"
-            android:textSize="15sp"
-            android:textColor="@android:color/white"
-            android:layout_gravity="center_horizontal"
+            android:text="@string/looking_for_model"
+            android:textSize="16sp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/tv_eta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/b_start_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="start activity"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
-
-    <Button
-        android:id="@+id/b_reset_model"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="reset model"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"/>
-
-    <TextView
-        android:id="@+id/tv_download_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/looking_for_model"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        />
 
 </RelativeLayout>

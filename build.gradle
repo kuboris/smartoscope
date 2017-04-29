@@ -128,5 +128,5 @@ dependencies {
     compile project(':libandroid_tensorflow_inference_java')
     compile project(':tensorflow_native')
     compile 'com.microsoft.azure.android:azure-storage-android:1.0.0'
-    compile 'com.github.tibolte:elasticdownload:1.0.4'
+    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
 }
