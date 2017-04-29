@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +27,7 @@ import cz.binarytrio.molescope.util.ModelKeeperStateReceiver;
 public class SplashScreenActivity extends Activity implements AFSDownloadListener {
 
     private static final Handler mHandler = new Handler();
-    private static final int DELAY_TIME = 300;
+    private static final int DELAY_TIME = 150;
     private static final int NOTIFY_ID = 1;
     private final int COLOR_OK_REACHED = Color.parseColor("#99FA99");
     private final int COLOR_OK_UNREACHED = Color.parseColor("#CCCCCC");
@@ -50,19 +51,26 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
     @Override
     public void onAttributesObtained(long versionNumber, long downloadSizeB) {
         mDownloadSizeBytes = downloadSizeB;
-        mDownloadStatusTV.setText(Helper.describeVersion(versionNumber) + " (" + Helper.describeSize(downloadSizeB) + ")");
+        String status = getString(R.string.downloading_model) + " " + Helper.describeVersion(versionNumber) + " (" + Helper.describeSize(downloadSizeB) + ")";
+        mDownloadStatusTV.setText(status);
+        mBuilder.setContentText(status);
+        mNotificationManager.notify(NOTIFY_ID, mBuilder.build());
     }
 
     @Override
     public void onDownloadProgress(float progressPercentage, long speedBpS) {
         Helper.log("progress tracker " + progressPercentage + "% done (" + Helper.describeSpeed(speedBpS) + ")");
 
+        String speed = Helper.describeSpeed(speedBpS);
+        String eta = Helper.describeTime((long) (mDownloadSizeBytes*(100-progressPercentage)*1000/speedBpS)) + " " + getString(R.string.left);
+
         mBuilder.setProgress(100, (int) progressPercentage, false);
+        mBuilder.setContentText(speed + ", " + eta);
         mNotificationManager.notify(NOTIFY_ID, mBuilder.build());
 
         mDownloadProgressBar.setProgress((int) progressPercentage);
-        mDownloadSpeedTV.setText(Helper.describeSpeed(speedBpS));
-        mETATV.setText(Helper.describeTime((long) (mDownloadSizeBytes*(100-progressPercentage)*1000/speedBpS)) + " " + getString(R.string.left));
+        mDownloadSpeedTV.setText(speed);
+        mETATV.setText(eta);
     }
 
     @Override
@@ -99,9 +107,9 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new Notification.Builder(this)
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText("Model downloading")
-//                            .setLargeIcon(R.drawable.doctor)
-                .setSmallIcon(R.drawable.doctor);
+                .setContentText(getString(R.string.downloading_model_attributes))
+                .setSmallIcon(R.drawable.doctor)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.doctor));
     }
 
     @Override

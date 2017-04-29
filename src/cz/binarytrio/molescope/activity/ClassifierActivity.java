@@ -26,10 +26,8 @@ import android.media.Image;
 import android.media.Image.Plane;
 import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.os.Trace;
-import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
@@ -37,56 +35,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cz.binarytrio.molescope.Classifier;
-import cz.binarytrio.molescope.application.MoleApp;
-import cz.binarytrio.molescope.util.Helper;
-import cz.binarytrio.molescope.view.DetectionStateView;
-import cz.binarytrio.molescope.view.OverlayView.DrawCallback;
-import cz.binarytrio.molescope.R;
-import cz.binarytrio.molescope.TensorFlowImageClassifier;
-
 import org.tensorflow.demo.env.BorderedText;
 import org.tensorflow.demo.env.ImageUtils;
 import org.tensorflow.demo.env.Logger;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import cz.binarytrio.molescope.Classifier;
+import cz.binarytrio.molescope.R;
+import cz.binarytrio.molescope.TensorFlowImageClassifier;
+import cz.binarytrio.molescope.application.MoleApp;
+import cz.binarytrio.molescope.util.Helper;
+import cz.binarytrio.molescope.view.DetectionStateView;
+import cz.binarytrio.molescope.view.OverlayView.DrawCallback;
+
 public class ClassifierActivity extends CameraActivity implements OnImageAvailableListener {
   private static final Logger LOGGER = new Logger();
-
-  // These are the settings for the original v1 Inception model. If you want to
-  // use a model that's been produced from the TensorFlow for Poets codelab,
-  // you'll need to set IMAGE_SIZE = 299, MODEL_IMAGE_MEAN = 128, MODEL_IMAGE_STD = 128,
-  // MODEL_INPUT_NAME = "Mul", and MODEL_OUTPUT_NAME = "final_result".
-  // You'll also need to update the MODEL_FILE and LABEL_FILE paths to point to
-  // the ones you produced.
-  //
-  // To use v3 Inception model, strip the DecodeJpeg Op from your retrained
-  // model first:
-  //
-  // python strip_unused.py \
-  // --input_graph=<retrained-pb-file> \
-  // --output_graph=<your-stripped-pb-file> \
-  // --input_node_names="Mul" \
-  // --output_node_names="final_result" \
-  // --input_binary=true
-//  private static final int INPUT_SIZE = 224;
-//  private static final int MODEL_IMAGE_MEAN = 117;
-//  private static final float MODEL_IMAGE_STD = 1;
-    private static final int INPUT_SIZE = 299;
-  private static final int IMAGE_MEAN = 128;
-  private static final float IMAGE_STD = 128;
-  private static final String INPUT_NAME = "Mul";
-  private static final String OUTPUT_NAME = "final_result";
-
-//  private static final String MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb";
-  private static final String MODEL_FILE = "file:///storage/9C33-6BBD/tensorflow_inception_graph.pb";
-  private static final String LABEL_FILE =
-      "file:///android_asset/imagenet_comp_graph_label_strings.txt";
 
   private static final boolean SAVE_PREVIEW_BITMAP = false;
 
@@ -94,7 +61,6 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
 
-  private String mPreviousClass = "";
   private int mToastLength =  Toast.LENGTH_SHORT;
 
   private List<Integer> detectionFrameHistory; // Add to class definition of ClassifierActivity.java
@@ -350,7 +316,6 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
       mStateIV.setImageDrawable(getDrawable(R.drawable.ic_loupe));
     }
 
-    mPreviousClass = currentClass;
   }
 
 

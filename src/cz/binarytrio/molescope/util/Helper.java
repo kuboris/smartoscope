@@ -46,9 +46,10 @@ public class Helper {
     public static final int KB = 1024;
     public static final int MB = 1024 * KB;
 
-    private static final int MINUTE = 60;
-    private static final int HOUR = 60 * MINUTE;
-    private static final int DAY = 24 * HOUR;
+    private static final long SECOND = 1000;
+    private static final long MINUTE = 60 * SECOND;
+    private static final long HOUR = 60 * MINUTE;
+    private static final long DAY = 24 * HOUR;
 
     private static final boolean DEBUG = true;
     private static final DateFormat VERSION_FORMAT = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
@@ -201,13 +202,13 @@ public class Helper {
              + VERSION_FORMAT_DECIMAL.format(cv.get(Calendar.DAY_OF_MONTH));
     }
 
-    public static String describeTime(long seconds) {return describeTime(seconds,2);}
-    private static String describeTime(long seconds, int level) {
+    public static String describeTime(long ms) {return describeTime(ms,2);}
+    private static String describeTime(long ms, int level) {
         if (level>0) {
-            if (seconds>DAY) return seconds/DAY + "d " + describeTime(seconds%DAY, level-1);
-            else if (seconds>HOUR) return seconds/HOUR + "h " + describeTime(seconds%HOUR, level-1);
-            else if (seconds>MINUTE) return seconds/MINUTE + "m " + describeTime(seconds%MINUTE, level-1);
-            else return seconds + "s";
+            if (ms>DAY) return ms/DAY + "d " + describeTime(ms%DAY, level-1);
+            else if (ms>HOUR) return ms/HOUR + "h " + describeTime(ms%HOUR, level-1);
+            else if (ms>MINUTE) return ms/MINUTE + "m " + describeTime(ms%MINUTE, level-1);
+            else return ms/SECOND + "s";
         } else return "";
     }
 }

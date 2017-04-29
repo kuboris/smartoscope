@@ -47,7 +47,7 @@
             android:screenOrientation="portrait"
             android:label="@string/activity_name_classification"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:noHistory="true">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
