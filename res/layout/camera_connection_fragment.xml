@@ -23,26 +23,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
-    <cz.binarytrio.molescope.view.HoleView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/texture"
-        android:layout_alignBottom="@id/texture"
-        android:layout_alignParentBottom="true"/>
-
-    <cz.binarytrio.molescope.view.DetectionStateView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/texture"
-        android:layout_alignBottom="@id/texture"
+w
+    <cz.binarytrio.molescope.view.DetectionStateAimView
         android:id="@+id/detectionState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/texture"
+        android:layout_alignBottom="@id/texture"
         android:layout_alignParentBottom="true"/>
 
-    <!--<org.tensorflow.demo.RecognitionScoreView-->
-        <!--android:id="@+id/results"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="112dp"-->
-        <!--android:layout_alignParentTop="true" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="112dp"
@@ -52,11 +41,12 @@
         android:id="@+id/resultNewPanel">
 
         <ImageView
+            android:id="@+id/doctorImage"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:contentDescription="@string/description_info"
             android:layout_margin="11dp"
             android:padding="15dp"
-            android:id="@+id/doctorImage"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_loupe"/>
@@ -65,7 +55,6 @@
             android:id="@+id/label"
             android:layout_marginTop="11dp"
             android:layout_marginBottom="11dp"
-            android:layout_marginRight="11dp"
             android:layout_marginEnd="11dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,7 +63,6 @@
             android:gravity="center_vertical"
             android:text="Point camera at mole"/>
     </LinearLayout>
-
 
     <View
         android:layout_width="match_parent"

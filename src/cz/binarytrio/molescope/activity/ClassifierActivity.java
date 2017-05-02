@@ -49,7 +49,7 @@ import cz.binarytrio.molescope.R;
 import cz.binarytrio.molescope.TensorFlowImageClassifier;
 import cz.binarytrio.molescope.application.MoleApp;
 import cz.binarytrio.molescope.util.Helper;
-import cz.binarytrio.molescope.view.DetectionStateView;
+import cz.binarytrio.molescope.view.DetectionStateAimView;
 import cz.binarytrio.molescope.view.OverlayView.DrawCallback;
 
 public class ClassifierActivity extends CameraActivity implements OnImageAvailableListener {
@@ -86,7 +86,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   private ImageView mStateIV;
 
 
-  private DetectionStateView detectionStateView;
+  private DetectionStateAimView detectionStateView;
 
   private BorderedText borderedText;
 
@@ -139,7 +139,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
     detectionFrameHistory.add(0);
 //    detectionFrameHistory.add(0);
 
-    detectionStateView = (DetectionStateView) findViewById(R.id.detectionState);
+    detectionStateView = (DetectionStateAimView) findViewById(R.id.detectionState);
     previewWidth = size.getWidth();
     previewHeight = size.getHeight();
 
@@ -253,13 +253,13 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
     int receivedState = 0;
 
     if (results.get(0).getTitle().equals("melanoma") && results.get(0).getConfidence() > 0.6){
-      receivedState = DetectionStateView.DETECTED_MELANOMA;
+      receivedState = DetectionStateAimView.DETECTED_MELANOMA;
     } else if(results.get(0).getTitle().equals("non melanoma") && results.get(0).getConfidence() > 0.5) {
-      receivedState = DetectionStateView.DETECTED_MOLE;
+      receivedState = DetectionStateAimView.DETECTED_MOLE;
     } else if (results.get(0).getTitle().equals("skin")) {
-      receivedState = DetectionStateView.SKIN;
+      receivedState = DetectionStateAimView.SKIN;
     } else if (results.get(0).getTitle().equals("other")) {
-      receivedState = DetectionStateView.UNDEFINED;
+      receivedState = DetectionStateAimView.UNDEFINED;
     }
 
 //    int index = 0;

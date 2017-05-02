@@ -33,4 +33,5 @@
     <string name="left">left</string>
     <string name="download_error_occured">The error occured</string>
     <string name="downloading_model">downloading model</string>
+    <string name="settings">Settings</string>
 </resources>

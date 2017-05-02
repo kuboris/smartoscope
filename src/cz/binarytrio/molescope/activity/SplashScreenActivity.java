@@ -10,6 +10,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -140,6 +143,24 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
             Helper.log("found local model " + Helper.describeVersion(localVersion) );
             mDownloadStatusTV.setText(getString(R.string.found) + " " + Helper.describeVersion(localVersion));
             mHandler.postDelayed(new Runnable() {@Override public void run() {startMainActivity();}}, DELAY_TIME);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

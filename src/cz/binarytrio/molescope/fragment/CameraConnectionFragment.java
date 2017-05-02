@@ -66,7 +66,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import cz.binarytrio.molescope.view.AutoFitTextureView;
-import cz.binarytrio.molescope.view.DetectionStateView;
+import cz.binarytrio.molescope.view.DetectionStateAimView;
 import cz.binarytrio.molescope.R;
 
 public class CameraConnectionFragment extends Fragment {
@@ -84,7 +84,7 @@ public class CameraConnectionFragment extends Fragment {
   private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
   private static final String FRAGMENT_DIALOG = "dialog";
 
-  private DetectionStateView mDetectionStateView;
+  private DetectionStateAimView mDetectionStateView;
 
   static {
     ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -333,13 +333,13 @@ public class CameraConnectionFragment extends Fragment {
   @Override
   public void onViewCreated(final View view, final Bundle savedInstanceState) {
     textureView = (AutoFitTextureView) view.findViewById(R.id.texture);
-    mDetectionStateView = (DetectionStateView) view.findViewById(R.id.detectionState);
+    mDetectionStateView = (DetectionStateAimView) view.findViewById(R.id.detectionState);
     mDetectionStateView.startAnimation(supplyBlinkAnimation());
   }
 
   private Animation supplyBlinkAnimation() {
-    AlphaAnimation blinkanimation= new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-    blinkanimation.setDuration(700); // duration - half a second
+    AlphaAnimation blinkanimation= new AlphaAnimation(1, 6); // Change alpha from fully visible to invisible
+    blinkanimation.setDuration(600); // duration - half a second
     blinkanimation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
     blinkanimation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
     blinkanimation.setRepeatMode(Animation.REVERSE);
