@@ -1,4 +1,4 @@
-Building an App that uses neural network for real-time skin cancer detection in less than 24 hours.
+Building an App that uses neural network for real-time skin cancer detection.
 ========================================================================
 
 >"Innovation is taking two things that already exist and putting them together in a new way." Tom Freston
