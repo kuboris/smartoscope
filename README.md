@@ -4,7 +4,7 @@ Building an App that uses neural network for real-time skin cancer detection.
 >"Innovation is taking two things that already exist and putting them together in a new way." Tom Freston
 
 When we decided to attend V4 [hackathon](https://developer.att.com/static-assets/documents/events/V4_HackFlyer_021517.pdf) we had a simple goal :
-Use the open source tools to train simple Android app to recognize skin cancer in less than 24hours.
+Use the open source tools to develop a simple Android app to recognize skin cancer in real-time.
 
 Step zero: Problem definition
 --------------------------------
