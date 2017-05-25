@@ -2,6 +2,39 @@ Updated. Working app in Alpha Version.
 ========================================================================
 Download alpha version of our [app here](https://drive.google.com/file/d/0BxbqxKOhDjB6blRKVUtMMTJ2UTA/view?usp=sharing)
 
+Short App Introduction:
+--------------------------------
+1. Download apk in your phone.( You might be asked to approve an app from unknown source)
+2. You will be asked to download a newest model. ( It's 90mb. Use WiFi if available)
+3. Wait for download to finish.
+
+<a href="Approve"><img src="https://github.com/kuboris/smartoscope/blob/master/img/approve.png" align="center" height="23%" width="23%" ></a>
+<a href="Model"><img src="https://github.com/kuboris/smartoscope/blob/master/img/model.png" align="center" height="23%" width="23%" ></a>
+<a href="Download"><img src="https://github.com/kuboris/smartoscope/blob/master/img/download.png" align="center" height="23%" width="23%" ></a>
+
+4. App has 4 classes of segmentation.
+  * Other ( Blue color ) - Model classifies surroundings.  
+  * Skin  ( Yellow color ) - Model classifies skin.  
+  * Mole  ( Green color) Model classifies picture as non-malignant.
+  * Melanoma ( Red color) Model classifies picture as malignant.
+  
+<a href="other"><img src="https://github.com/kuboris/smartoscope/blob/master/img/other.png" align="center" height="23%" width="23%" ></a>
+<a href="skin-detected"><img src="https://github.com/kuboris/smartoscope/blob/master/img/skin-detected.png" align="center" height="23%" width="23%" ></a>
+<a href="mole-detected"><img src="https://github.com/kuboris/smartoscope/blob/master/img/mole-detected.png" align="center" height="23%" width="23%" ></a>
+<a href="melanoma-detected"><img src="https://github.com/kuboris/smartoscope/blob/master/img/melanoma-detected.png" align="center" height="23%" width="23%" ></a>
+
+5. Additionally you can start debug mode by pressing volume down button. (Image in the corner is the real image that is being processed by the model)
+
+<a href="debug-mode"><img src="https://github.com/kuboris/smartoscope/blob/master/img/debug-mode.png" align="center" height="23%" width="23%" ></a>
+
+Warning
+--------------------------------
+This is not medically approved app. Please consult with a professional when you have a doubt.
+
+Make sure that the image is focused. It might produce false positives or false negatives otherwise.
+
+We tested it with cheap microscope add-on.( [example](https://images-na.ssl-images-amazon.com/images/I/41kfY-wrqaL.jpg) ) If your phone doesn't allow for big enough macro shots it's advised to take a picture normally and visualize it on the other screen for to get a bigger picture.
+
 
 Building an App that uses neural network for real-time skin cancer detection.
 ========================================================================
