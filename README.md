@@ -8,9 +8,9 @@ Short App Introduction:
 2. You will be asked to download a newest model. ( It's 90mb. Use WiFi if available)
 3. Wait for download to finish.
 
-<a href="Approve"><img src="https://github.com/kuboris/smartoscope/blob/master/img/approve.png" align="center" height="23%" width="23%" ></a>
-<a href="Model"><img src="https://github.com/kuboris/smartoscope/blob/master/img/model.png" align="center" height="23%" width="23%" ></a>
-<a href="Download"><img src="https://github.com/kuboris/smartoscope/blob/master/img/download.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/approve.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/approve.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/model.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/model.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/download.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/download.png" align="center" height="23%" width="23%" ></a>
 
 4. App has 4 classes of segmentation.
   * Other ( Blue color ) - Model classifies surroundings.  
@@ -18,14 +18,14 @@ Short App Introduction:
   * Mole  ( Green color) Model classifies picture as non-malignant.
   * Melanoma ( Red color) Model classifies picture as malignant.
   
-<a href="other"><img src="https://github.com/kuboris/smartoscope/blob/master/img/other.png" align="center" height="23%" width="23%" ></a>
-<a href="skin-detected"><img src="https://github.com/kuboris/smartoscope/blob/master/img/skin-detected.png" align="center" height="23%" width="23%" ></a>
-<a href="mole-detected"><img src="https://github.com/kuboris/smartoscope/blob/master/img/mole-detected.png" align="center" height="23%" width="23%" ></a>
-<a href="melanoma-detected"><img src="https://github.com/kuboris/smartoscope/blob/master/img/melanoma-detected.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/other.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/other.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/skin-detected.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/skin-detected.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/mole-detected.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/mole-detected.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/melanoma-detected.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/melanoma-detected.png" align="center" height="23%" width="23%" ></a>
 
 5. Additionally you can start debug mode by pressing volume down button. (Image in the corner is the real image that is being processed by the model)
 
-<a href="debug-mode"><img src="https://github.com/kuboris/smartoscope/blob/master/img/debug-mode.png" align="center" height="23%" width="23%" ></a>
+<a href="https://github.com/kuboris/smartoscope/blob/master/img/debug-mode.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/debug-mode.png" align="center" height="23%" width="23%" ></a>
 
 Warning
 --------------------------------
