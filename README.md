@@ -12,7 +12,7 @@ Short App Introduction:
 <a href="https://github.com/kuboris/smartoscope/blob/master/img/model.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/model.png" align="center" height="23%" width="23%" ></a>
 <a href="https://github.com/kuboris/smartoscope/blob/master/img/download.png"><img src="https://github.com/kuboris/smartoscope/blob/master/img/download.png" align="center" height="23%" width="23%" ></a>
 
-4. App has 4 classes of segmentation.
+4. App has 4 classes.
   * Other ( Blue color ) - Model classifies surroundings.  
   * Skin  ( Yellow color ) - Model classifies skin.  
   * Mole  ( Green color) Model classifies picture as non-malignant.
