@@ -19,12 +19,15 @@ import com.microsoft.azure.storage.file.CloudFile;
 import com.microsoft.azure.storage.file.CloudFileClient;
 import com.microsoft.azure.storage.file.CloudFileDirectory;
 import com.microsoft.azure.storage.file.CloudFileShare;
+import com.microsoft.azure.storage.file.ListFileItem;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.text.DateFormat;
@@ -56,32 +59,37 @@ public class Helper {
     private static final DecimalFormat SIZE_FORMAT = new DecimalFormat("#0.0");
     private static final DecimalFormat VERSION_FORMAT_DECIMAL = new DecimalFormat("00");
 
-    public static void fetchModelInteractively(String storageConnectionString, String shareName, String remoteModelName, long bufferSize, String modelStorage, String versionFileExtension, AFSDownloadListener listener) {
+    public static void fetchModelInteractively(String storageConnectionString, String shareName, String remoteModelName, long bufferSize, String modelStorage, String versionFileExtension, String tmpFileExtension, AFSDownloadListener listener) {
         try {
             long downloadTime = System.currentTimeMillis();
             CloudFile modelFile = getAFSFile(storageConnectionString, shareName, remoteModelName);
-            long modelVersion = getRemoteModelVersion(modelFile);
-            long modelSize = getRemoteModelSize(modelFile);
+            final long modelVersion = getRemoteModelVersion(modelFile);
+            final long modelSize = getRemoteModelSize(modelFile);
             listener.onAttributesObtained(modelVersion, modelSize);
-            int blocks = (int) Math.ceil((double)modelSize/bufferSize);
-            log("Downloading " + describeSize(modelSize) + " file in "+blocks+" blocks of "+describeSize(bufferSize)+" each...");
-            FileOutputStream localModelStream = new FileOutputStream(modelStorage);
-
+            final int blocks = (int) Math.ceil((double)modelSize/bufferSize);
+            final File tmpModel = new File(modelStorage + tmpFileExtension);
+            FileOutputStream localModelStream = new FileOutputStream(tmpModel, false);
             long blockTime;
+
+            log("Downloading " + describeSize(modelSize) + " file in "+blocks+" blocks of "+describeSize(bufferSize)+" each...");
             for (int i=0; i<blocks; i++) {
                 blockTime = System.currentTimeMillis();
-                modelFile.downloadRange(bufferSize*i, (long) bufferSize, localModelStream);
+                modelFile.downloadRange(bufferSize*i, bufferSize, localModelStream);
                 blockTime = System.currentTimeMillis()-blockTime;
                 log("\t["+(i+1)+"/"+blocks+"] done in " + blockTime + " ms");
                 if (i!=blocks-1) listener.onDownloadProgress((i+1)*bufferSize*100/modelSize, bufferSize*1000/blockTime);
-//                if (i==20) break;
             }
 
-//            create version file
-            new DataOutputStream(new FileOutputStream(modelStorage+versionFileExtension)).writeLong(modelVersion);
-
             downloadTime = System.currentTimeMillis()-downloadTime;
-            System.out.println("Download done in " + downloadTime/1000 + "s (" + describeSize(modelSize*1000/downloadTime) + "/s)");
+            log("Download done in " + downloadTime/1000 + "s (" + describeSize(modelSize*1000/downloadTime) + "/s)");
+
+
+            if (!tmpModel.renameTo(new File(modelStorage)))
+                listener.onDownloadError("Model rename failed");
+
+            new DataOutputStream(new FileOutputStream(modelStorage+versionFileExtension)).writeLong(modelVersion);
+            log("version is now " + Helper.describeVersion(modelVersion));
+
             listener.onDownloadFinished(downloadTime);
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,8 +188,15 @@ public class Helper {
         CloudFileShare cloudShare = client.getShareReference(share);
         CloudFileDirectory rootDir = cloudShare.getRootDirectoryReference();
         CloudFile modelFile = rootDir.getFileReference(file);
+
         modelFile.downloadAttributes(); // determine file size
         return modelFile;
+    }
+
+    public static String describeThrowable(Throwable t) {
+        StringWriter sw = new StringWriter();
+        t.printStackTrace(new PrintWriter(sw));
+        return sw.toString();
     }
 
     public static String describeSize(long downloadSizeB) {

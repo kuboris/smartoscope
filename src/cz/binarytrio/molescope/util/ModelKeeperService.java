@@ -33,15 +33,17 @@ public class ModelKeeperService extends IntentService implements AFSDownloadList
         int action = workIntent.getIntExtra(ATTR_KEY_1, Helper.UNDEFINED);
         switch (action) {
             case ACTION_CHECK_VERSION:
+                Helper.log("service call ACTION_CHECK_VERSION");
                 CloudFile modelFile = Helper.getAFSFile(MoleApp.STORAGE_CONNECTION_STRING, MoleApp.SHARE_NAME, MoleApp.MODEL_NAME);
                 sendBroadcast(new Intent(EVENT_MODEL_ATTRIBUTES_OBTAINED)
                         .putExtra(ATTR_KEY_1, Helper.getRemoteModelVersion(modelFile))
                         .putExtra(ATTR_KEY_2, Helper.getRemoteModelSize(modelFile)));
                 break;
             case ACTION_FETCH_MODEL:
+                Helper.log("service call ACTION_FETCH_MODEL");
                 Helper.fetchModelInteractively(
                         MoleApp.STORAGE_CONNECTION_STRING, MoleApp.SHARE_NAME, MoleApp.MODEL_NAME,
-                        851 * Helper.KB, Helper.getLocalModelStorage(this, MoleApp.MODEL_NAME, true), MoleApp.VERSIONFILE_EXTENSION, this);
+                        851 * Helper.KB, Helper.getLocalModelStorage(this, MoleApp.MODEL_NAME, true), MoleApp.VERSIONFILE_EXTENSION, MoleApp.TMPFILE_EXTENSION, this);
                 break;
             default:
                 Helper.log("unexpected action " + action + " in ModelKeeperService");

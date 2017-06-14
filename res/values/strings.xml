@@ -34,4 +34,8 @@
     <string name="download_error_occured">The error occured</string>
     <string name="downloading_model">downloading model</string>
     <string name="settings">Settings</string>
+    <string name="checking_model_updates">checking model updates</string>
+    <string name="message_newer_model_available">A newer model is now available. Do you wish to download it (%s)?</string>
+    <string name="title_newer_model_available">Newer model</string>
+    <string name="new_model">new model</string>
 </resources>

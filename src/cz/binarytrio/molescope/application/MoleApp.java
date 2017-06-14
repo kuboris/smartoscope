@@ -5,11 +5,11 @@ package cz.binarytrio.molescope.application;
  */
 
 public class MoleApp {
-
-    public static final String STORAGE_CONNECTION_STRING = "FileEndpoint=https://triodisks597.file.core.windows.net;SharedAccessSignature=sv=2016-05-31&ss=f&srt=sco&sp=r&se=2017-07-20T07:49:14Z&st=2017-04-19T23:49:14Z&spr=https&sig=0S3RaPQq0s716TjlyAUE4RaSaXHpYO5zTXkTjCJjQkQ%3D";
-    public static final String SHARE_NAME = "trio-apk-storage";
+    public static final String STORAGE_CONNECTION_STRING = "FileEndpoint=https://moledisk.file.core.windows.net;SharedAccessSignature=sv=2016-05-31&ss=f&srt=sco&sp=r&se=2018-06-14T23:59:05Z&st=2016-06-14T15:59:05Z&spr=https&sig=bn0NbZjn4cbcN3AaRRHNfvitBdugwjg9w35%2BaQZAwh0%3D";
+    public static final String SHARE_NAME = "model";
     public static final String MODEL_NAME = "tensorflow_inception_graph.pb";
     public static final String VERSIONFILE_EXTENSION = ".ver";
+    public static final String TMPFILE_EXTENSION = ".tmp";
 
     public static final int MODEL_INPUT_SIZE = 299;
     public static final int MODEL_IMAGE_MEAN = 128;

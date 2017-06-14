@@ -50,25 +50,38 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
 
     private long mDownloadSizeBytes;
 
+    private boolean justChecking = false;
+    private long mLocalVersion;
+
 
     @Override
-    public void onAttributesObtained(long versionNumber, long downloadSizeB) {
-        mDownloadSizeBytes = downloadSizeB;
-        String status = getString(R.string.downloading_model) + " " + Helper.describeVersion(versionNumber) + " (" + Helper.describeSize(downloadSizeB) + ")";
-        mDownloadStatusTV.setText(status);
-        mBuilder.setContentText(status);
-        mNotificationManager.notify(NOTIFY_ID, mBuilder.build());
+    public void onAttributesObtained(final long versionNumber, final long downloadSizeB) {
+        Helper.log("onAttributesObtained. checking mode: " + justChecking);
+        if (justChecking) {
+            justChecking = false;
+            if (mLocalVersion<versionNumber) Helper.showYNDialog(this, getString(R.string.title_newer_model_available), getString(R.string.message_newer_model_available, Helper.describeSize(downloadSizeB)), new YNListener() {
+                    @Override public void yes() {startModelDownload();}
+                    @Override public void no()  {startMainActivity();}
+                });
+            else startMainActivity();
+        } else {
+            mDownloadSizeBytes = downloadSizeB;
+            String status = getString(R.string.downloading_model) + " " + Helper.describeVersion(versionNumber) + " (" + Helper.describeSize(downloadSizeB) + ")";
+            mDownloadStatusTV.setText(status);
+            mBuilder.setContentText(status);
+            mNotificationManager.notify(NOTIFY_ID, mBuilder.build());
+        }
     }
 
     @Override
-    public void onDownloadProgress(float progressPercentage, long speedBpS) {
-        Helper.log("progress tracker " + progressPercentage + "% done (" + Helper.describeSpeed(speedBpS) + ")");
+    public void onDownloadProgress(float progressPercentage, long speedBpS) { // really, bytes per second is meant here
+        Helper.log("progress tracker " + progressPercentage + "% ("+mDownloadSizeBytes*progressPercentage/100+"/"+mDownloadSizeBytes+"b) done (" + Helper.describeSpeed(speedBpS) + ")");
 
         String speed = Helper.describeSpeed(speedBpS);
-        String eta = Helper.describeTime((long) (mDownloadSizeBytes*(100-progressPercentage)*1000/speedBpS)) + " " + getString(R.string.left);
+        String eta = Helper.describeTime((long) (mDownloadSizeBytes*(100-progressPercentage)*10/speedBpS)) + " " + getString(R.string.left);
 
-        mBuilder.setProgress(100, (int) progressPercentage, false);
-        mBuilder.setContentText(speed + ", " + eta);
+        mBuilder.setProgress(100, (int) progressPercentage, false)
+                .setContentText(speed + ", " + eta);
         mNotificationManager.notify(NOTIFY_ID, mBuilder.build());
 
         mDownloadProgressBar.setProgress((int) progressPercentage);
@@ -109,10 +122,10 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new Notification.Builder(this)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText(getString(R.string.downloading_model_attributes))
+                .setContentTitle(getString(R.string.new_model))
                 .setSmallIcon(R.drawable.doctor)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.doctor));
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.doctor))
+                .setVisibility(Notification.VISIBILITY_PUBLIC);
     }
 
     @Override
@@ -133,15 +146,20 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
         mETATV = (TextView) findViewById(R.id.tv_eta);
         mDownloadProgressBar = (NumberProgressBar) findViewById(R.id.npb_download);
 
-        long localVersion = Helper.getLocalModelVersion(Helper.getLocalModelStorage(this, MoleApp.MODEL_NAME, false), MoleApp.VERSIONFILE_EXTENSION);
-        if (localVersion==Helper.UNDEFINED) {
+        mLocalVersion = Helper.getLocalModelVersion(Helper.getLocalModelStorage(this, MoleApp.MODEL_NAME, false), MoleApp.VERSIONFILE_EXTENSION);
+        Helper.log("local model version is " + mLocalVersion);
+        if (mLocalVersion==Helper.UNDEFINED) {
             Helper.showYNDialog(this, R.string.no_model_title, R.string.no_model_msg, new YNListener() {
                 @Override public void yes() {startModelDownload();}
                 @Override public void no() {finish();}
             });
+        } else if (Helper.hasInternet(this)) {
+            justChecking = true;
+            mDownloadStatusTV.setText(R.string.checking_model_updates);
+            checkRemoteModelVersion();
         } else {
-            Helper.log("found local model " + Helper.describeVersion(localVersion) );
-            mDownloadStatusTV.setText(getString(R.string.found) + " " + Helper.describeVersion(localVersion));
+            Helper.log("found local model " + Helper.describeVersion(mLocalVersion));
+            mDownloadStatusTV.setText(getString(R.string.found) + " " + Helper.describeVersion(mLocalVersion));
             mHandler.postDelayed(new Runnable() {@Override public void run() {startMainActivity();}}, DELAY_TIME);
         }
     }
@@ -162,6 +180,10 @@ public class SplashScreenActivity extends Activity implements AFSDownloadListene
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void checkRemoteModelVersion() {
+        startService(new Intent(this, ModelKeeperService.class).putExtra(ModelKeeperService.ATTR_KEY_1, ModelKeeperService.ACTION_CHECK_VERSION));
     }
 
     private void startModelDownload() {
