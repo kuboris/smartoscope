@@ -1,6 +1,8 @@
 Updated. Working app in Alpha Version.
 ========================================================================
 ## Download alpha version of our app [here](https://drive.google.com/file/d/0BxbqxKOhDjB6blRKVUtMMTJ2UTA/view?usp=sharing)
+Update 2
+As per request added [mirror for waya Skin cancer dataset](https://drive.google.com/open?id=0BxbqxKOhDjB6UzdQSkRwMjhCcW8).
 
 Short App Introduction:
 --------------------------------
