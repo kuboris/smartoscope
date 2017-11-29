@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
-w
+
     <cz.binarytrio.molescope.view.DetectionStateAimView
         android:id="@+id/detectionState"
         android:layout_width="match_parent"

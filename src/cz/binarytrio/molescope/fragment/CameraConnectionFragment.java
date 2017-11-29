@@ -253,14 +253,14 @@ public class CameraConnectionFragment extends Fragment {
    *
    * @param text The message to show
    */
-  private void showToast(final String text) {
+  private void showToast(final String text, final int duration) {
     final Activity activity = getActivity();
     if (activity != null) {
       activity.runOnUiThread(
           new Runnable() {
             @Override
             public void run() {
-              Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
+              Toast.makeText(activity, text, duration).show();
             }
           });
     }
@@ -335,6 +335,10 @@ public class CameraConnectionFragment extends Fragment {
     textureView = (AutoFitTextureView) view.findViewById(R.id.texture);
     mDetectionStateView = (DetectionStateAimView) view.findViewById(R.id.detectionState);
     mDetectionStateView.startAnimation(supplyBlinkAnimation());
+
+    if (null == savedInstanceState) {
+      showToast(getString(R.string.help_enable_debug), Toast.LENGTH_LONG);
+    }
   }
 
   private Animation supplyBlinkAnimation() {
@@ -588,7 +592,7 @@ public class CameraConnectionFragment extends Fragment {
 
             @Override
             public void onConfigureFailed(final CameraCaptureSession cameraCaptureSession) {
-              showToast("Failed");
+              showToast("Failed", Toast.LENGTH_SHORT);
             }
           },
           null);

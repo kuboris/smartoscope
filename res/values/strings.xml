@@ -38,4 +38,5 @@
     <string name="message_newer_model_available">A newer model is now available. Do you wish to download it (%s)?</string>
     <string name="title_newer_model_available">Newer model</string>
     <string name="new_model">new model</string>
+    <string name="help_enable_debug">For enabling debug overlay press volume button.</string>
 </resources>
